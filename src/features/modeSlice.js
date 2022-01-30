@@ -35,7 +35,7 @@ export const modeSlice = createSlice({
     }
 })
 
-export const {lightMode, darkMode} = modeSlice.actions
+export const { lightMode, darkMode } = modeSlice.actions
 
 let modeReducer = modeSlice.reducer
 

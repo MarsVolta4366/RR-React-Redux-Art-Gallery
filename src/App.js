@@ -2,9 +2,10 @@ import './App.css';
 import Nav from './components/Nav'
 import ContentWrapper from './components/ContentWrapper'
 import Footer from './components/Footer'
-import { useSelector, useDispatch } from 'react-redux'
-import {darkMode, lightMode} from "./features/modeSlice"
+import { useSelector, useDispatch, connect } from 'react-redux'
+import { darkMode, lightMode } from "./features/modeSlice"
 import { clearData, fetchData, incrementId, decrementId, inputId } from './features/dataSlice'
+import { useEffect } from 'react';
 
 function App() {
 
@@ -18,12 +19,16 @@ function App() {
   const data = useSelector((state) => state.data)
 
   const renderImg = () => {
-    if(data.apiData) {
-      return <img style={{'width': '25vw'}} src={data.apiData.primaryImage} alt={data.apiData.title} />
+    if (data.apiData) {
+      return <img style={{ 'width': '25vw' }} src={data.apiData.primaryImage} alt={data.apiData.title} />
     } else {
       return <p>image here</p>
     }
   }
+
+  useEffect(() => {
+    dispatch(fetchData())
+  }, [data.objectId, dispatch])
 
   return (
     <div style={{ backgroundColor: mode.color4, color: 'black' }} className="App">
@@ -35,7 +40,7 @@ function App() {
         <button onClick={() => dispatch(incrementId())}>Next</button>
         <button onClick={() => dispatch(decrementId())}>Back</button>
       </div>
-      <input value={ data.objectId } onChange={(e) => {
+      <input value={data.objectId} onChange={(e) => {
         dispatch(inputId(Number(e.target.value)))
       }} />
       <div>
@@ -48,4 +53,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  objectId: state.data.objectId
+})
+
+export default connect(mapStateToProps)(App)

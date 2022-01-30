@@ -6,7 +6,7 @@ const Footer = () => {
     const mode = useSelector((state) => state.mode)
 
     return (
-        <div className="Footer" style={{'backgroundColor': mode.color2}}>
+        <div className="Footer" style={{ 'backgroundColor': mode.color2 }}>
             <p>Footer Content</p>
         </div>
     )

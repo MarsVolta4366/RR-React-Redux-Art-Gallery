@@ -10,7 +10,7 @@ export const dataSlice = createSlice({
     initialState,
     reducers: {
         setData: (state, action) => {
-            return {...state, apiData : action.payload}
+            return { ...state, apiData: action.payload }
         },
         clearData: () => {
             return initialState

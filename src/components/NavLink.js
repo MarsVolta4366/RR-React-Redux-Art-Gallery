@@ -6,7 +6,7 @@ const NavLink = (props) => {
     const mode = useSelector((state) => state.mode)
 
     return (
-        <div className="NavLink" style={{'backgroundColor': mode.color3}}>
+        <div className="NavLink" style={{ 'backgroundColor': mode.color3 }}>
             <p>{props.content}</p>
         </div>
     )
